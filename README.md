@@ -1,76 +1,74 @@
-# Universe Database - freeCodeCamp Certification
+# Universe Database: freeCodeCamp Certification
 
-Este proyecto es parte del currículo de **Relational Database** de freeCodeCamp. El objetivo principal fue diseñar y poblar una base de datos relacional utilizando **PostgreSQL** para representar diversos elementos del universo conocido.
+This project is part of the freeCodeCamp **Relational Database** curriculum. The primary objective was to design and populate a relational database using **PostgreSQL** to represent various elements of the known universe.
 
-## 🚀 Características del Proyecto
+## 🚀 Project Features
 
-La base de datos se llama `universe` y contiene una estructura jerárquica que conecta galaxias con sus respectivos sistemas y lunas.
+The database is named `universe` and features a hierarchical structure connecting galaxies to their respective systems and moons.
 
-### Estructura de la Base de Datos:
-* **Galaxy**: Información sobre diferentes galaxias (espirales, elípticas, etc.).
-* **Star**: Estrellas vinculadas a una galaxia específica.
-* **Planet**: Planetas que orbitan dichas estrellas.
-* **Moon**: Satélites naturales asociados a cada planeta.
-* **Galaxy Types**: Una tabla adicional para categorizar la morfología galáctica.
+### Database Structure:
+* **Galaxy**: Information about different galaxies (spiral, elliptical, etc.).
+* **Star**: Stars linked to a specific galaxy.
+* **Planet**: Planets orbiting those stars.
+* **Moon**: Natural satellites associated with each planet.
+* **Galaxy Types**: An additional table to categorize galactic morphology.
 
-## 📐 Estructura y Relaciones (DER)
+## 📐 Structure and Relationships (ERD)
 
 ```mermaid
 erDiagram
-    GALAXY ||--o{ STAR : contiene
-    STAR ||--o{ PLANET : orbita
-    PLANET ||--o{ MOON : tiene
+GALAXY ||--o{ STAR : contains
+STAR ||--o{ PLANET : orbits
+PLANET ||--o{ MOON : has
 ```
 
-## 🛠️ Detalles Técnicos
+## 🛠️ Technical Details
 
-* **Motor de Base de Datos:** PostgreSQL.
-* **Relaciones:** Implementación de llaves primarias (`PRIMARY KEY`) y llaves foráneas (`FOREIGN KEY`) para mantener la integridad referencial.
-* **Tipos de Datos:** Uso de `INT`, `NUMERIC`, `TEXT`, `VARCHAR` y `BOOLEAN`.
-* **Restricciones:** Uso de `UNIQUE`, `NOT NULL` y autoincrementos (`SERIAL`).
+* **Database Engine:** PostgreSQL.
+* **Relationships:** Implementation of primary keys (`PRIMARY KEY`) and foreign keys (`FOREIGN KEY`) to maintain referential integrity.
+* **Data Types:** Use of `INT`, `NUMERIC`, `TEXT`, `VARCHAR`, and `BOOLEAN`.
+* **Constraints:** Use of `UNIQUE`, `NOT NULL`, and auto-incrementing fields (`SERIAL`).
 
-## 📊 Estadísticas de la Base de Datos
+## 📊 Database Statistics
 
-Para cumplir con los requisitos de la certificación, la base de datos incluye:
-- **6** Galaxias.
-- **6** Estrellas.
-- **12** Planetas.
-- **20** Lunas.
+To meet certification requirements, the database includes:
+- **6** Galaxies.
+- **6** Stars.
+- **12** Planets.
+- **20** Moons. ## 🛠️ Concepts Demonstrated
 
-## 🛠️ Conceptos Demostrados
+* **Normalization and Foreign Keys**: Ensuring referential integrity between hierarchical entities (Galaxy ➔ Star ➔ Planet ➔ Moon).
+* **Integrity Constraints**: Strict use of `NOT NULL`, `UNIQUE`, and appropriate data types (Integers, Strings, Booleans, Floats/Numerics).
+* **DDL & DML Scripts**: Structured table creation and initial data insertion, ready for execution.
 
-* **Normalización y Claves Foráneas**: Garantía de integridad referencial entre entidades jerárquicas (Galaxia ➔ Estrella ➔ Planeta ➔ Luna).
-* **Restricciones de Integridad** (Constraints): Uso estricto de NOT NULL, UNIQUE, y tipos de datos adecuados (Enteros, Cadenas, Booleanos, Flotantes/Numéricos).
-* **Script DDL & DML**: Creación estructurada de tablas e inserción inicial de datos lista para su ejecución.
+## ⚙️ How to Rebuild the Database
 
-## ⚙️ Cómo reconstruir la base de datos
+If you wish to replicate this project locally, ensure you have PostgreSQL installed and follow these steps:
 
-Si deseas replicar este proyecto localmente, asegúrate de tener PostgreSQL instalado y sigue estos pasos:
-
-1. Crea la base de datos:
-   ```bash
-   createdb universe
-2. Importa el archivo SQL:
+1. Create the database:
+```bash
+createdb universe
 ```
-   psql universe < universe.sql
+2. Import the SQL file:
+```bash
+psql universe < universe.sql
 ```
 
-## 🔍 Consultas de Ejemplo (Queries)
+## 🔍 Example Queries
 ```SQL
-   -- Obtener todos los planetas con el nombre de su estrella y galaxia correspondiente
-   SELECT 
-       planet.name AS planeta, 
-       star.name AS estrella, 
-       galaxy.name AS galaxia
-   FROM planet
-   JOIN star ON planet.star_id = star.star_id
-   JOIN galaxy ON star.galaxy_id = galaxy.galaxy_id;
+-- Get all planets with their corresponding star and galaxy names
+SELECT
+planet.name AS planet,
+star.name AS star,
+galaxy.name AS galaxy
+FROM planet
+JOIN star ON planet.star_id = star.star_id
+JOIN galaxy ON star.galaxy_id = galaxy.galaxy_id;
 ```
 
 ---
 
-## 📜 Créditos y Reconocimientos
+## 📜 Credits and Acknowledgments
 
-* **Origen de la consigna / dataset:** Este proyecto es uno de los desafíos requeridos para la obtención de la **Certificación de Bases de Datos Relacionales** de [freeCodeCamp](https://www.freecodecamp.org/).
-* **Implementación:** La lógica de scripts en Bash (`insert_data.sh`), la estructuración del esquema PostgreSQL (`worldcup.sql`) y la elaboración de consultas analíticas (`queries.sh`) fueron desarrolladas por completo como resolución individual al problema planteado.
-
+* **Assignment/Dataset Origin:** This project is one of the required challenges for obtaining the **Relational Database Certification** from [freeCodeCamp](https://www.freecodecamp.org/).
+* **Implementation:** The Bash script logic (`insert_data.sh`), the PostgreSQL schema structure (`worldcup.sql`), and the analytical queries (`queries.sh`) were developed entirely as an individual solution to the assigned problem.
